@@ -54,26 +54,29 @@ def add_restaurant_and_rating_to_dict(dictionary):
             print "{} is already in the dictionary, and its rating is {}.".format(
                 rest_name, dictionary[rest_name])
             return dictionary
-
-        else: 
-            rating = validate_rating()
-
-            break
+        
+        rating = validate_rating()
+        break
 
     dictionary[rest_name] = rating
     return dictionary      
+
 
 def validate_rating():
     """gets user generated rating between 1-5, returns it"""
 
     while True:
+        
         rating = raw_input("What is its rating? (1-5, with 5 as the best) > ")
         try:
-            if 0.0 < float(rating) <= 5.0:
-                return rating
+            rating = float(rating)
         except:
             print "Dude...learn to read..."
-
+            continue
+        if not(0.0 < rating <= 5.0):
+            print "Dude...learn to read..."
+            continue
+        return rating
 
 
 def REPL(file_name):
