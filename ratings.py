@@ -53,9 +53,11 @@ def add_restaurant_and_rating_to_dict(dictionary):
         if rest_name.lower() in keys_to_check_against:
             print "{} is already in the dictionary, and its rating is {}.".format(
                 rest_name, dictionary[rest_name])
-        else:
+            return dictionary
+
+        else: #commenting this out and indenting 58-61 would let users change ratings on existing rests
             rating = '0'
-            while rating.isdigit() == False or not int(rating) in range(6)[1:]:
+            while rating.isdigit() == False or not int(rating) in range(6)[1:]: 
                 rating = raw_input("What is its rating (1-5, with 5 being the best. > ")
                 print "dude... learn to read..."
         break
@@ -67,8 +69,10 @@ def add_restaurant_and_rating_to_dict(dictionary):
 
 def REPL(file_name):
     """runs the things"""
+    ratings_dict = turn_ratings_into_dictionary(file_name)
+    
     while True:
-        ratings_dict = turn_ratings_into_dictionary(file_name)
+
         ratings_dict = add_restaurant_and_rating_to_dict(ratings_dict) 
         print_sorted_restaurants(ratings_dict)    
         continue_or_no = raw_input("Want to add a new restaurant? (Y/N) > ")
