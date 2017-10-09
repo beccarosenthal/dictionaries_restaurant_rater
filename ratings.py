@@ -8,7 +8,7 @@
 # put your code here
 
 
-def rate_restaurant(file_name):
+def turn_ratings_into_dictionary(file_name):
     """takes file name, returns sorted dict with restaurant:rating pairs"""
 
     with open(file_name) as the_file:
@@ -22,6 +22,18 @@ def rate_restaurant(file_name):
             rating = pair[1]
             restaurant_ratings[restaurant] = rating
 
-        print restaurant_ratings
+        return restaurant_ratings
 
-rate_restaurant("scores.txt")
+
+def sort_restaurant(dictionary):
+    """takes dictionary, prints it, sorted by keys"""
+
+    sorted_dict = sorted(dictionary.items())
+    for item in sorted_dict:
+        print "{} is rated at {}.".format(item[0], item[1])
+
+
+dictionary_to_call = turn_ratings_into_dictionary("scores.txt")
+sort_restaurant(dictionary_to_call)    
+
+# rate_restaurant("scores.txt")
