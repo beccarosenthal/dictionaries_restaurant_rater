@@ -55,15 +55,24 @@ def add_restaurant_and_rating_to_dict(dictionary):
                 rest_name, dictionary[rest_name])
             return dictionary
 
-        else: #commenting this out and indenting 58-61 would let users change ratings on existing rests
-            rating = '0'
-            while rating.isdigit() == False or not int(rating) in range(6)[1:]: 
-                rating = raw_input("What is its rating (1-5, with 5 being the best. > ")
-                print "dude... learn to read..."
-        break
+        else: 
+            rating = validate_rating()
+
+            break
 
     dictionary[rest_name] = rating
     return dictionary      
+
+def validate_rating():
+    """gets user generated rating between 1-5, returns it"""
+
+    while True:
+        rating = raw_input("What is its rating? (1-5, with 5 as the best) > ")
+        try:
+            if 0.0 < float(rating) <= 5.0:
+                return rating
+        except:
+            print "Dude...learn to read..."
 
 
 
@@ -83,5 +92,3 @@ def REPL(file_name):
 
 
 REPL("scores.txt")
-# not (rating.isdigit() and int(rating) in range(6)[1:]) #This and the line below are the same
-# (not rating.isdigit() or not int(rating) in range(6)[1:])
